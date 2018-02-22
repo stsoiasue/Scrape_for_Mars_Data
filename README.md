@@ -8,7 +8,7 @@ ___
 
 In a Jupyter Notebook I used BeautifulSoup, Pandas, Requests, and Splinter to do my initial scraper setup. I gathered information from the sources below.
 
-* ### [NASA Mars News:](https://mars.nasa.gov/news/)
+* ### [NASA Mars News](https://mars.nasa.gov/news/)
 
 * ### [JPL Mars Featured Image](https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars)
 
