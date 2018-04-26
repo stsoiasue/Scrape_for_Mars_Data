@@ -7,7 +7,7 @@ import pymongo
 app = Flask(__name__)
 
 # Connect to MongoDB
-conn = "mongodb://localhost:27017"
+conn = "mongodb://heroku_x36s718z:rr1kn78k989q6aibobbc05rs28@ds259119.mlab.com:59119/heroku_x36s718z"
 client = pymongo.MongoClient(conn)
 db = client.marsDB
 
