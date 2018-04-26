@@ -171,4 +171,7 @@ def scrape():
     # add to dictionary
     scraped_data['mars_hem_urls'] = hemisphere_image_urls
 
+    # close browser
+    browser.quit()
+
     return scraped_data
