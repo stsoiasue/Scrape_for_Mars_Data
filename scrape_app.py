@@ -2,7 +2,6 @@
 import scrape_mars
 from flask import Flask, render_template, redirect
 from pymongo import MongoClient
-import creds
 
 # Create a Flask app
 app = Flask(__name__)
@@ -11,9 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     # Connect to MongoDB
-    db_user = creds.db_user
-    db_pass = creds.db_pass
-    uri = f"mongodb://{db_user}:{db_pass}@ds257579.mlab.com:57579/marsdb"
+    uri = f"mongodb://stsoi:Testy13@ds257579.mlab.com:57579/marsdb"
 
     client = MongoClient(uri,
                         connectTimeoutMS=30000,
@@ -30,9 +27,7 @@ def index():
 @app.route("/scrape")
 def scrape():
     # Connect to MongoDB
-    db_user = 'stsoi'
-    db_pass = 'Ripfrosty13'
-    uri = f"mongodb://{db_user}:{db_pass}@ds257579.mlab.com:57579/marsdb"
+    uri = f"mongodb://stsoi:Testy13@ds257579.mlab.com:57579/marsdb"
 
     client = MongoClient(uri,
                         connectTimeoutMS=30000,
