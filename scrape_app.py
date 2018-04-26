@@ -1,6 +1,6 @@
 # import dependencies
 import scrape_mars
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, url_for
 from pymongo import MongoClient
 
 # Create a Flask app
@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     # Connect to MongoDB
-    uri = f"mongodb://stsoi:Testy13@ds257579.mlab.com:57579/marsdb"
+    uri = "mongodb://stsoi:Testy13@ds257579.mlab.com:57579/marsdb"
 
     client = MongoClient(uri,
                         connectTimeoutMS=30000,
@@ -27,14 +27,13 @@ def index():
 @app.route("/scrape")
 def scrape():
     # Connect to MongoDB
-    uri = f"mongodb://stsoi:Testy13@ds257579.mlab.com:57579/marsdb"
+    uri = "mongodb://stsoi:Testy13@ds257579.mlab.com:57579/marsdb"
 
     client = MongoClient(uri,
                         connectTimeoutMS=30000,
                         socketTimeoutMS=None,
                         socketKeepAlive=True)
     db = client.marsdb
-    # db.authenticate(db_user, db_pass)
 
     mars_data = scrape_mars.scrape()
     db.mars.update(
@@ -45,9 +44,7 @@ def scrape():
 
     client.close()
 
-    return print('scraping complete')
-    # return redirect("http://127.0.0.1:5000/", code=302)
-    # return redirect("https://sleepy-depths-19458.herokuapp.com/", code=302)
+    return redirect(url_for("index"), code=302)
 
 if __name__ == "__main__":
     app.run(debug=True)
