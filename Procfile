@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn scrape_app:scrape_app --preload
