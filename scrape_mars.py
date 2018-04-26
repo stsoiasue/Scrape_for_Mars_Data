@@ -7,6 +7,9 @@ import re
 
 def scrape():
 
+    # define browser
+    browser = Browser('chrome', executable_path='chromedriver', headless=False)
+
     # dictionary to hold scraped data
     scraped_data = {}
 
@@ -17,10 +20,12 @@ def scrape():
     mars_news_html = 'https://mars.nasa.gov/news/'
 
     # Retrieve page with the requests module
-    response = req.get(mars_news_html)
+    browser.visit(mars_news_html)
+
+    html = browser.html
 
     # create Beautiful Soup object
-    mars_soup = bs(response.text, "html.parser")
+    mars_soup = bs(html, "html.parser")
 
     # find mars news title 
     news_title = mars_soup.find('div', class_='content_title').text
@@ -131,9 +136,6 @@ def scrape():
 
     # create mars_hem soup
     mars_hem_soup = bs(response.text, 'html.parser')
-
-    # define browser
-    browser = Browser('chrome', executable_path='chromedriver', headless=False)
 
     # visit url
     browser.visit(mars_hem_url)
