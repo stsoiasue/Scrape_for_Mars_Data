@@ -45,8 +45,9 @@ def scrape():
 
     client.close()
 
+    return print('scraping complete')
     # return redirect("http://127.0.0.1:5000/", code=302)
-    return redirect("https://sleepy-depths-19458.herokuapp.com/", code=302)
+    # return redirect("https://sleepy-depths-19458.herokuapp.com/", code=302)
 
 if __name__ == "__main__":
     app.run(debug=True)
