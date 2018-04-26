@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup as bs
 from splinter import Browser
 import requests as req
 import re
+import datetime
 
 def scrape():
 
@@ -175,5 +176,9 @@ def scrape():
 
     # close browser
     browser.quit()
+
+    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    scraped_data['time_pulled'] = f'{time}'
 
     return scraped_data
