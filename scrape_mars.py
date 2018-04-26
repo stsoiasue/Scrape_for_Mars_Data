@@ -51,16 +51,20 @@ def scrape():
     jpl_soup = bs(response.text, "html.parser")
 
     # find div with carosel_items class
-    featured_image_url = jpl_soup.find('a', class_='fancybox')
+    featured_image_object = jpl_soup.find('a', class_='fancybox')
 
-    # reassign to style attribute of div
-    featured_image_url = featured_image_url['data-fancybox-href']
+    # assign style attribute to featured image URL
+    featured_image_url = featured_image_object['data-fancybox-href']
+
+    # assign image title to featured image title
+    featured_image_title = featured_image_object['data-title']
 
     # add jpl website prefix
     featured_image_url = 'https://www.jpl.nasa.gov' + featured_image_url
 
     # add to dictionary
     scraped_data['jpl_url'] = featured_image_url
+    scraped_data['jpl_title'] = featured_image_title
 
     '''
     Get mars weather 
@@ -111,7 +115,7 @@ def scrape():
     mars_facts_df = mars_facts_tables[0]
 
     # convert mars_facts_df to html string
-    mars_facts_html = mars_facts_df.to_html(index= False, header= None)
+    mars_facts_html = mars_facts_df.to_html(index= False, header= None, classes='table text-center')
 
     # add to dictionary
     scraped_data['mars_facts'] = mars_facts_html
